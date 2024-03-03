@@ -1,10 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Homepage from './components/Homepage';
+import Products from './components/Products';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Homepage} />
+        <Route path="/products" component={Products} />
+      </Switch>
+    </Router>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
