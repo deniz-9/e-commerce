@@ -47,13 +47,13 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="flex pr-6 pl-3 h-14 justify-end items-center gap-10">
-        <div>
-          <h1>Olimpos</h1>
+      <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-80">
+        <div className="flex items-start justify-center pl-16 py-4">
+          <h1>olimpos</h1>
         </div>
-        <div className="flex items-center gap-96">
+        <div className="flex items-center justify-center gap-96">
           <div>
-            <ul className="flex flex-row gap-4 items-start">
+            <ul className="flex flex-row gap-5 items-start">
               <li>Home</li>
               <li>Shop</li>
               <li>About</li>
@@ -84,3 +84,6 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
