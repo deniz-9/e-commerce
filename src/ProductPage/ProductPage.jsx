@@ -170,7 +170,7 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
-      
+      <BestSeller />
       <Logo />
     </>
   );

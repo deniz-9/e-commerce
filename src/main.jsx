@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Homepage from './components/Homepage';
+import ProductPage from "./ProductPage/ProductPage";
 import Products from './components/Products';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
