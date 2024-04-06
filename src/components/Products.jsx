@@ -8,6 +8,15 @@ import Button from "@mui/material/Button";
 import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
 import Dropdown from "react-bootstrap/Dropdown";
 import { AiOutlineDown } from "react-icons/ai";
+import Category from "./Category";
+import ShoppingPage from "./ShoppingPage";
+import { ProductDetail } from "./ProductDetail";
+import resim from "../images/urun.png";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
+import { PiSquaresFourFill, PiListChecksThin } from "react-icons/pi";
+import Dropdown from "react-bootstrap/Dropdown";
+import { AiOutlineDown } from "react-icons/ai";
 
 const Products = () => {
   return (
