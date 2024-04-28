@@ -10,6 +10,9 @@ import { useParams } from "react-router-dom";
 import Rating from "./Rating";
 import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import Footer from "../layouts/Footer";
+import Header from "../layouts/Header";
+
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -30,6 +33,7 @@ const ProductPage = () => {
 
   return (
     <>
+      <Header />
       <div className="xl:mt-0 md:mt-60">
         <div>
           <div className="xl:flex xl:items-center xl:px-36 xl:py-10 xl:gap-4 xl:bg-opacity-20 xl:bg-gray-400 md:hidden">
@@ -207,6 +211,7 @@ const ProductPage = () => {
         </div>
         <BestSeller />
         <Logo />
+        <Footer />
       </div>
     </>
   );

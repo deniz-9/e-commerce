@@ -11,6 +11,8 @@ import { AiOutlineDown } from "react-icons/ai";
 import Category from "./Category";
 import ShoppingPage from "./ShoppingPage";
 import { ProductDetail } from "./ProductDetail";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
 import resim from "../images/urun.png";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
@@ -21,6 +23,7 @@ import { AiOutlineDown } from "react-icons/ai";
 const Products = () => {
   return (
     <>
+      <Header />
       <div className="flex py-6 items-center bg-custom-gray">
         <div className="flex items-center gap-8 px-80 w-full justify-between">
           <div className="flex text-xl font-bold items-start w-1/2">
@@ -358,6 +361,7 @@ const Products = () => {
       </div>
 
       <Logo />
+      <Footer />
     </>
   );
 };
