@@ -14,6 +14,7 @@ import {
 import { MdLocationOn } from "react-icons/md";
 import { PiArrowBendRightDownBold } from "react-icons/pi";
 import resim2 from "../images/alisveris.png";
+import Semiheader from "./Semiheader";
 
 const Contact = () => {
   return (

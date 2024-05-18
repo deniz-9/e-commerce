@@ -14,6 +14,7 @@ import foto3 from "../images/team3.png";
 import foto4 from "../images/team4.png";
 import foto5 from "../images/team5.png";
 import user from "../images/teamUser.jpg";
+import Semiheader from "./Semiheader";
 
 const Team = () => {
   return (
