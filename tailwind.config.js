@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/tw-elements-react/dist/js/**/*.js",
+  ],
+
   theme: {
     extend: {
       backgroundColor: {
@@ -9,11 +13,10 @@ module.exports = {
         "custom-yellow": "#FFCE31",
       },
       screens: {
-        sm: "450px",
-        md: "768px",
-        xl: "1300px",
+        md: "320px",
+        xl: "800px",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("tw-elements-react/dist/plugin.cjs")],
 };

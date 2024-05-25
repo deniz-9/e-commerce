@@ -13,7 +13,7 @@ import data from "../Data";
 const Homepage = () => {
   return (
     <>
-      <div className="flex justify-evenly items-center py-6">
+      <div className="flex justify-evenly items-center xl:mt-0 md:mt-60 py-6">
         <div className="xl:flex xl:flex-row xl:justify-center xl:items-center xl:w-11/12 md:w-11/12 md:flex md:flex-col md:justify-center md:items-center bg-gradient-to-r from-blue-300 via-green-300 to-blue-200">
           <div className="xl:flex xl:flex-col xl:justify-center xl:items-start xl:gap-8 xl:flex-shrink-0 md:flex md:flex-col md:py-4 md:gap-8 md:items-center ">
             <div className="text-sky-600">{data.homepage.season}</div>
@@ -33,7 +33,7 @@ const Homepage = () => {
 
       <Logo />
       <div className="flex items-center self-stretch pr-40 pl-40">
-        <div className="flex py-20 items-start gap-4">
+        <div className="xl:flex xl:flex-row md:flex md:flex-col xl:py-20 md:py-20 xl:items-start md:items-center gap-4">
           <div>
             <img src={resim7} alt="resim" />
           </div>

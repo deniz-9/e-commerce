@@ -11,7 +11,7 @@ import { LiaFacebook, LiaSignInAltSolid } from "react-icons/lia";
 const Header = () => {
   return (
     <>
-      <div className="flex justify-center items-center h-14 ">
+      <div className="xl:flex xl:justify-center xl:items-center xl:h-14 md:hidden">
         <div className="md:min-w-full md:flex md:bg-yellow-300 md:text-white md:justify-between md:items-center xl:flex xl:min-w-full xl:bg-black text-white xl:justify-between xl:items-start xl:min-h-40 xl:h-14 p-3">
           <div className="flex flex-row items-center gap-8">
             <div className="flex items-center gap-2">
@@ -47,13 +47,13 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-60 ">
-        <div className="flex items-start justify-center pl-16 py-4">
-          <h1>Olimpos</h1>
+      <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-40 ">
+        <div className="flex items-start justify-center ml-8 ">
+          <div className="text-lg w-32">Olimpos</div>
         </div>
         <div className="flex items-center justify-around w-full ">
-          <div>
-            <ul className="flex flex-row gap-7 items-start">
+          <div className="">
+            <ul className="xl:flex md:flex xl:flex-row xl:ml-0 md:ml-12 md:flex-col xl:gap-7 md:gap-3 xl:py-0 md:py-10 md:mt-64 xl:mt-0 md:items-center xl:items-start">
               <a href="http://localhost:3000/">Home</a>
               <a href="http://localhost:3000/product">Shop</a>
               <a href="http://localhost:3000/about">About</a>
@@ -63,18 +63,19 @@ const Header = () => {
             </ul>
           </div>
           <div className="flex items-center gap-5">
-            <div className="flex items-center text-blue-500">
+            <div className="xl:flex xl:flex-row xl:items-center xl:text-blue-500 md:items-center md:text-blue-500 md:flex md:flex-row md:justify-center">
               <LiaSignInAltSolid />
-              Login / Register
+              <a href="http://localhost:3000/login">Login</a>
+              <a href="http://localhost:3000/signup">/ Register</a>
             </div>
             <div className="flex items-center gap-1 text-blue-500">
               <BsSearch />
             </div>
             <div className="flex items-center gap-1 text-blue-500">
-              <AiOutlineShoppingCart />1
+              <AiOutlineShoppingCart />
             </div>
             <div className="flex items-center gap-1 text-blue-500">
-              <AiOutlineHeart />2
+              <AiOutlineHeart />
             </div>
           </div>
         </div>
