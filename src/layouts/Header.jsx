@@ -12,8 +12,8 @@ const Header = () => {
   return (
     <>
       <div className="flex justify-center items-center h-14 ">
-        <div className="flex w-full bg-black text-white justify-between items-start min-h-40 h-14 p-3">
-          <div className="flex flex-row items-center gap-3">
+        <div className="md:min-w-full md:flex md:bg-yellow-300 md:text-white md:justify-between md:items-center xl:flex xl:min-w-full xl:bg-black text-white xl:justify-between xl:items-start xl:min-h-40 xl:h-14 p-3">
+          <div className="flex flex-row items-center gap-8">
             <div className="flex items-center gap-2">
               <BsTelephone />
               <span> 532 78 98 78</span>
@@ -47,19 +47,19 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-80">
+      <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-60 ">
         <div className="flex items-start justify-center pl-16 py-4">
-          <h1>olimpos</h1>
+          <h1>Olimpos</h1>
         </div>
-        <div className="flex items-center justify-center gap-96">
+        <div className="flex items-center justify-around w-full ">
           <div>
-            <ul className="flex flex-row gap-5 items-start">
-              <li>Home</li>
-              <li>Shop</li>
-              <li>About</li>
-              <li>Blog</li>
-              <li>Contact</li>
-              <li>Pages</li>
+            <ul className="flex flex-row gap-7 items-start">
+              <a href="http://localhost:3000/">Home</a>
+              <a href="http://localhost:3000/product">Shop</a>
+              <a href="http://localhost:3000/about">About</a>
+              <a href="http://localhost:3000/">Blog</a>
+              <a href="http://localhost:3000/team">Contact</a>
+              <a href="http://localhost:3000/products">Pages</a>
             </ul>
           </div>
           <div className="flex items-center gap-5">
@@ -67,13 +67,13 @@ const Header = () => {
               <LiaSignInAltSolid />
               Login / Register
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 text-blue-500">
               <BsSearch />
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 text-blue-500">
               <AiOutlineShoppingCart />1
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 text-blue-500">
               <AiOutlineHeart />2
             </div>
           </div>
@@ -84,6 +84,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
