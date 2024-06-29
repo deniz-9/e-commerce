@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../api/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SingupPage2() {
   const [role, setRole] = useState(1);
+  const [showStoreFields, setShowStoreFields] = useState(false);
+
+  useEffect(() => {
+    setShowStoreFields(role === 2);
+    console.log(role);
+  }, [role]);
 
   const {
     register,
@@ -36,10 +44,13 @@ function SingupPage2() {
     try {
       const response = await api.post("/signup", formData);
       console.log("Başarılı:", response.data);
+      console.log(formData);
+      toast.success("Başarıyla kayıt oldunuz.");
 
       setIsSubmitting(false);
     } catch (error) {
       console.error("Hata:", error);
+      toast.error("Kayıt sırasında bir hata oluştu.");
 
       setIsSubmitting(false);
     }
@@ -51,7 +62,7 @@ function SingupPage2() {
         <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
           <div>
             <a href="/">
-              <h3 className="text-4xl font-bold text-purple-600">Olimpos</h3>
+              <h3 className="text-4xl font-bold text-purple-600">HepsiOrada</h3>
             </a>
           </div>
           <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
@@ -77,7 +88,9 @@ function SingupPage2() {
                     className="block w-full mt-1 border border-black rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
-                {errors.name && <p>{errors.name.message}</p>}
+                <p style={{ color: errors.name ? "red" : "inherit" }}>
+                  {errors.name && errors.name.message}
+                </p>
               </div>
               <div className="mt-4 text-center justify-center">
                 <label
@@ -100,7 +113,9 @@ function SingupPage2() {
                     className="block w-full mt-1 border border-black rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
-                {errors.email && <p>{errors.email.message}</p>}
+                <p style={{ color: errors.email ? "red" : "inherit" }}>
+                  {errors.email && errors.email.message}
+                </p>
               </div>
               <div className="mt-4 text-center justify-center">
                 <label
@@ -109,7 +124,7 @@ function SingupPage2() {
                 >
                   Password
                 </label>
-                <div className="flex flex-col items-start">
+                <div className="flex flex-col items-start ">
                   <input
                     type="password"
                     id="password"
@@ -123,9 +138,11 @@ function SingupPage2() {
                     className="block w-full mt-1 border border-black rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
-                {errors.password && <p>{errors.password.message}</p>}
+                <p style={{ color: errors.password ? "red" : "inherit" }}>
+                  {errors.password && errors.password.message}
+                </p>
               </div>
-              <div className="mt-8 text-center justify-center">
+              <div className="mt-8 text-center justify-center ">
                 <label
                   htmlFor="passwordConfirmation"
                   className="block text-sm font-medium text-gray-700 undefined"
@@ -138,19 +155,25 @@ function SingupPage2() {
                     id="passwordConfirmation"
                     {...register("passwordConfirmation", {
                       required: "Password confirmation is required",
+                      className: "",
                       validate: (value) =>
                         value === watch("password") || "Passwords do not match",
                     })}
                     className="block border border-black w-full mt-1  rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
-                {errors.passwordConfirmation && (
-                  <p>{errors.passwordConfirmation.message}</p>
-                )}
+                <p
+                  style={{
+                    color: errors.passwordConfirmation ? "red" : "inherit",
+                  }}
+                >
+                  {errors.passwordConfirmation &&
+                    errors.passwordConfirmation.message}
+                </p>
               </div>
               <div className="flex w-full mt-8 items-center justify-center rounded-lg border border-black">
                 <select
-                  onChange={(e) => setRole(e.target.value)}
+                  onChange={(e) => setRole(parseInt(e.target.value))}
                   {...register("role_id")}
                   className="form-select"
                   aria-label="Default select example"
@@ -160,7 +183,7 @@ function SingupPage2() {
                   <option value="3">Admin</option>
                 </select>
               </div>
-              {role === "Store" && (
+              {showStoreFields && (
                 <div>
                   <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full px-3">
@@ -283,6 +306,8 @@ function SingupPage2() {
                 </button>
               </div>
             </form>
+            <ToastContainer />
+
             <div className="mt-4 text-grey-600">
               Already have an account?{" "}
               <span>
