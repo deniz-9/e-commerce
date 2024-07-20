@@ -72,7 +72,7 @@ const Header = () => {
       </div>
       <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-40 ">
         <div className="flex items-start justify-center ml-8 ">
-          <div className="text-lg w-32">Hepsi Orada</div>
+          <div className="text-lg w-32">Olimpos</div>
         </div>
         <div className="flex items-center justify-around w-full ">
           <div className="">
