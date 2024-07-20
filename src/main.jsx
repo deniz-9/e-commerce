@@ -6,7 +6,7 @@ import Products from "./components/Products";
 import Contact from "./components/Contact";
 import Team from "./components/Team";
 import About from "./components/About";
-//import Loginpage from "./LoginPage/Loginpage";
+import Loginpage from "./LoginPage/LoginPage";
 import SingupPage2 from "./LoginPage/SingupPage2";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
