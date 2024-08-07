@@ -10,7 +10,7 @@ import storeReducer from "./reducer/storeReducer";
 const rootReducer = combineReducers({
   global: globalReducer,
   user: userReducer,
-  product: productReducer,
+  products: productReducer,
   shoppingCart: shoppingCartReducer,
   store: storeReducer,
 });
