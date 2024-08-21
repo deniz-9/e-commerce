@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { BsInstagram, BsTelephone, BsSearch } from "react-icons/bs";
 import {
   AiOutlineMail,
@@ -9,13 +9,21 @@ import { FiTwitter, FiYoutube } from "react-icons/fi";
 import { LiaFacebook, LiaSignInAltSolid } from "react-icons/lia";
 import { useDispatch, useSelector } from "react-redux";
 import md5 from "md5";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { Button } from "@mui/material";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import { SET_GRAVATAR_SUCCESS } from "../store/action/ActionType";
 import { useEffect } from "react";
+import { logoutUser } from "../store/action/userAction";
 
 const Header = () => {
   const user = useSelector((store) => store.user.user);
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const open = Boolean(anchorEl);
 
   useEffect(() => {
     if (user && user.email) {
@@ -32,6 +40,17 @@ const Header = () => {
   if (user && user.email) {
     gravatarUrl = `https://www.gravatar.com/avatar/${md5(user.email)}`;
   }
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    dispatch(logoutUser());
+
+    handleClose();
+  };
   return (
     <>
       <div className="xl:flex xl:justify-center xl:items-center xl:h-14 md:hidden">
@@ -72,7 +91,7 @@ const Header = () => {
       </div>
       <div className="flex pr-6 pl-3 h-14 justify-start items-center gap-40 ">
         <div className="flex items-start justify-center ml-8 ">
-          <div className="text-lg w-32">Olimpos</div>
+          <div className="text-lg w-32">Hepsi Orada</div>
         </div>
         <div className="flex items-center justify-around w-full ">
           <div className="">
@@ -100,6 +119,26 @@ const Header = () => {
                     }}
                   />
                   <p className="text-sky-500 font-bold">{user.name}</p>
+                  <Button
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <MoreHorizIcon />
+                  </Button>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
+                    }}
+                  >
+                    <MenuItem onClick={handleLogout}>çıkış yap</MenuItem>
+                  </Menu>
                 </div>
               ) : (
                 <div className="flex">
