@@ -1,20 +1,41 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { SlArrowRight } from "react-icons/sl";
 import Logo from "../components/Logo";
 import BestSeller from "./BestSeller";
 import foto from "../images/foto23.png";
-import cover from "../images/cover.jpg";
-import little from "../images/küçük1.jpg";
-import little1 from "../images/küçük2.jpg";
-import {
-  AiTwotoneStar,
-  AiOutlineStar,
-  AiOutlineHeart,
-  AiFillEye,
-} from "react-icons/ai";
+import { AiOutlineHeart, AiFillEye } from "react-icons/ai";
 import { PiShoppingCartSimpleLight } from "react-icons/pi";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import Rating from "./Rating";
+import { useHistory } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/action/shoppingAction";
 
 const ProductPage = () => {
+  const { productId } = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.productList);
+  const selectedProduct = products.find(
+    (product) => product.id === Number(productId)
+  );
+
+  if (!selectedProduct) {
+    return <div>Ürün bulunamadı.</div>;
+  }
+
+  const goBack = () => {
+    history.push("/product");
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(selectedProduct));
+    console.log("eklendi");
+    console.log("eklenen ürün: ", selectedProduct);
+  };
   return (
     <>
       <div className="xl:mt-0 md:mt-60">
@@ -24,49 +45,32 @@ const ProductPage = () => {
             <SlArrowRight />
             <h2>Shop</h2>
           </div>
+          <div className="bg-opacity-20 pl-40 bg-gray-400">
+            <Button
+              onClick={goBack}
+              style={{
+                cursor: "pointer",
+                backgroundColor: "white",
+                color: "black",
+              }}
+            >
+              Back
+            </Button>
+          </div>
         </div>
-        <div className="xl:flex xl:flex-row md:flex md:flex-col px-40 bg-opacity-20 bg-gray-400 gap-8 py-7">
+        <div className="xl:flex xl:flex-row md:flex md:flex-col px-40 bg-opacity-20 bg-gray-400 gap-8 py-7 h-[600px]">
           <div className="carousel w-full">
-            <div id="slide1" className="carousel-item relative w-full">
-              <img src={cover} alt="cover" className="w-full" />
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide4" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide2" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-            <div id="slide2" className="carousel-item relative w-full">
-              <img src={little} alt="little" className="w-full" />
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide1" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide3" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-            <div id="slide3" className="carousel-item relative w-full">
-              <img src={little1} alt="little" className="w-full" />
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide2" className="btn btn-circle">
-                  ❮
-                </a>
-                <a href="#slide4" className="btn btn-circle">
-                  ❯
-                </a>
-              </div>
-            </div>
-            <div id="slide4" className="carousel-item relative w-full">
-              <img src={little} alt="little" className="w-full" />
-              <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <div id="slide1" className="carousel-item relative w-full active">
+              <img
+                src={selectedProduct.images[0].url}
+                alt={`image-0`}
+                className="w-[650px] h-[500px]"
+              />
+              <div className="absolute flex justify-between transform -translate-y-2/3 left-1 right-32 top-1/2">
                 <a href="#slide3" className="btn btn-circle">
                   ❮
                 </a>
-                <a href="#slide1" className="btn btn-circle">
+                <a href="#slide2" className="btn btn-circle">
                   ❯
                 </a>
               </div>
@@ -75,28 +79,28 @@ const ProductPage = () => {
 
           <div className="flex flex-col gap-4">
             <div className="text-2xl">
-              <h3>Floating Phone</h3>
+              <h3>{selectedProduct.name}</h3>
             </div>
             <div className="flex items-center gap-2">
-              <AiTwotoneStar className="text-yellow-200 w-7 h-7" />
-              <AiTwotoneStar className="text-yellow-200 w-7 h-7" />
-              <AiTwotoneStar className="text-yellow-200 w-7 h-7" />
-              <AiTwotoneStar className="text-yellow-200 w-7 h-7" />
-              <AiOutlineStar className="text-yellow-200 w-7 h-7" />
-              <p>10 Reviews</p>
-            </div>
-            <div className="font-bold text-2xl">$ 1,139,33</div>
-            <div className="flex gap-3">
-              <div className="font-bold">Availability :</div>
-              <div className="text-blue-400 font-bold">In Stock</div>
+              <Rating rating={selectedProduct.rating} />
             </div>
             <div>
-              <p className="w-96">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
-                quod. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Natus, quod. Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
+              <p className="text-xl font-bold text-cyan-500">
+                {selectedProduct.rating}
               </p>
+            </div>
+            <div className="font-bold text-2xl">
+              $ {selectedProduct.price.toFixed(2)}
+            </div>
+            <div className="flex gap-3">
+              <div className="font-bold">Availability :</div>
+              <div className="text-blue-400 font-bold">
+                {" "}
+                {selectedProduct.stock > 0 ? "In Stock" : "Out of Stock"}
+              </div>
+            </div>
+            <div>
+              <p className="w-96">{selectedProduct.description}</p>
             </div>
             <hr />
             <div className="flex gap-2">
@@ -106,18 +110,35 @@ const ProductPage = () => {
               <div className="w-4 h-4 rounded-full bg-black"></div>
             </div>
             <div className="flex gap-4 py-4">
-              <button className="bg-blue-400 text-white py-3 px-6 rounded-lg">
+              <button className="bg-blue-400 text-white py-3 px-8 rounded-lg">
                 Select Options
               </button>
-              <div className="flex gap-4">
-                <div className="text-black bg-white rounded-full p-3 justify-center items-center">
-                  <AiOutlineHeart />
-                </div>
-                <div className="text-black bg-white rounded-full p-3">
-                  <PiShoppingCartSimpleLight />
-                </div>
-                <div className="text-black bg-white rounded-full p-3">
-                  <AiFillEye />
+              <div>
+                <div className="flex gap-4">
+                  <div className="cursor-pointer">
+                    <div className="text-black bg-white rounded-full px-4 py-2 h-8 justify-center items-center">
+                      <AiOutlineHeart />
+                    </div>
+                    <span className="flex text-center justify-center">
+                      Beğen
+                    </span>
+                  </div>
+
+                  <div className="cursor-pointer">
+                    <div
+                      onClick={() => handleAddToCart(selectedProduct)}
+                      className="text-black bg-white rounded-full px-4 py-2 h-8 justify-center items-center"
+                    >
+                      <PiShoppingCartSimpleLight />
+                    </div>
+                    <span className="flex text-center">Sepete Ekle</span>
+                  </div>
+                  <div className="cursor-pointer">
+                    <div className="text-black bg-white rounded-full px-3 py-2 h-8 justify-center items-center">
+                      <AiFillEye />
+                    </div>
+                    <span className="flex text-center">Kaydet</span>
+                  </div>
                 </div>
               </div>
             </div>
