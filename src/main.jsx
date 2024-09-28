@@ -8,6 +8,8 @@ import Team from "./components/Team";
 import About from "./components/About";
 import Loginpage from "./LoginPage/LoginPage";
 import SingupPage2 from "./LoginPage/SingupPage2";
+import Order from "./components/AddAddress";
+import Order from "./components/Order";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { verifyToken } from "./store/action/userAction";
